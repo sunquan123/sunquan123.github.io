@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>谷歌云免费搭建VPS // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://sunquan123.github.io/css/main.min.59023e5fd38d6ecb0e1dfbb295077c3c67e00e3b9eb3feaf34b5a5e6b332897a.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="谷歌云免费搭建VPS"/>
+<meta name="twitter:description" content="谷歌云账户免费申请试用  1.登录Google Cloud官网并进行账户注册： https://cloud.google.com/ ,我们在官网首页点击免费试用进行注册：  2.我们进行国家和地区资料与个人信息填写，我们在右侧栏可以看到12个月有效期的300刀赠额说明。国家地区选择，最好直接用美国信息填写，不要选中国，很多人都说选择中国无法申请成功。个人信息就是用下面的网站生成的信息填入对应的栏目就行了。 *美国人信息生成网站：匹配结果-世界各国虚拟身份信息、地址、信用卡生成 *勾选同意条款，点击同意并继续：  3.我们接下来进行个人资料和信用卡资料的填写，个人资料和信用卡资料如实填写就好了：  账号类型尽量选择个人，个人资料和信用卡信息填写完成之后直接点击开始免费试用选项即可。接着你的信用卡账户消费1美金，这是谷歌为了确认你不是机器人用于验证账户的，5分钟内你会收到账户撤销1美金的消费操作，1美元会返回你的账户，整个过程完全免费。另外除非你主动确认升级成付费账号，300美金的赠款消费完毕以后并不会直接从你的信用卡账户续费扣款。 *Ps：我使用的是招行全球通的信用卡，其他的全球通信用卡应该也可以。  5.我们完成付款之后登陆到Google Cloud的控制台 ，就能看到我们账号的赠金300刀以及有效期365天：   谷歌云创建VM实例  1.创建VM实例，我们点击左上角的导航菜单选项，选择Compute Engine（计算机引擎），在子菜单选择VM实例：  2.我们进入VM实例创建页面，直接点击创建实例选项：  3.我们接下来进行VM实例创建的配置选项如图所示，VM实例名称自定义，VM实例地区选择靠近亚洲地区asia开头的地区，机器类型选择微型即可（省钱），磁盘的系统我使用的centos7，当然我们可以自由选择：  最后记得勾选上允许HTTP流量和允许HTTPS流量，最后设置完成后我们点击创建：  创建成功后，会出现一个实例列表：  6.我们接下来可以对我们创建的VM实例的连接速度进行一下测试，如果连接速度不错的话我们可以继续下面的操作，如果连接速度很差的话我们可以选择重建VM实例。一般PING值在100以内速度都还不错，我们可以访问IPIP对我们创建的VM实例进行测试，这里前面选择一个距离你比较近的地点，后面输入我们创建的VM实例的外部IP地址，，然后我们点击查看： IPIP测试地址： https://www.ipip.net/traceroute.php   搭建SSR&#43;BBR  1.VM实例创建好之后我们接下来进行SSR和BBR的安装。我们在创建好的VM实例名称末尾的连接选项中选择在浏览器窗口中打开，之后正式进入搭建的配置界面：  2.我们接下来会进入服务器后台配置界面，这里就需要我们输入相关代码进行操作了。代码输入请严格按照给到的代码复制粘贴获取root权限：
+*sudo -i*  3.我们获取到root权限之后，可以使用别人的脚本一键安装BBR加速：
+*wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod &#43;x bbr.sh &amp;&amp; ./bbr.sh *  或者，我们可以深入一层，一步步的安装BBR，以便多了解一些Linux的操作指令：
+ 步骤 ① ：使用 ELRepo RPM 仓库升级内核 要使用BBR，我们需要将CentOS 7机器的内核升级到4.9.0。我们可以使用ELRepo RPM第三方仓库轻松完成该操作。 ps：ELRepo是CentOS十分有用的稳定的软件源，与其他软件源不一样的是，这个第三方源主要是提供硬件驱动、内核更新方面的支持，如显卡、无线网卡、内核等等，现在已经支持CentOS7."/>
+
+    <meta property="og:title" content="谷歌云免费搭建VPS" />
+<meta property="og:description" content="谷歌云账户免费申请试用  1.登录Google Cloud官网并进行账户注册： https://cloud.google.com/ ,我们在官网首页点击免费试用进行注册：  2.我们进行国家和地区资料与个人信息填写，我们在右侧栏可以看到12个月有效期的300刀赠额说明。国家地区选择，最好直接用美国信息填写，不要选中国，很多人都说选择中国无法申请成功。个人信息就是用下面的网站生成的信息填入对应的栏目就行了。 *美国人信息生成网站：匹配结果-世界各国虚拟身份信息、地址、信用卡生成 *勾选同意条款，点击同意并继续：  3.我们接下来进行个人资料和信用卡资料的填写，个人资料和信用卡资料如实填写就好了：  账号类型尽量选择个人，个人资料和信用卡信息填写完成之后直接点击开始免费试用选项即可。接着你的信用卡账户消费1美金，这是谷歌为了确认你不是机器人用于验证账户的，5分钟内你会收到账户撤销1美金的消费操作，1美元会返回你的账户，整个过程完全免费。另外除非你主动确认升级成付费账号，300美金的赠款消费完毕以后并不会直接从你的信用卡账户续费扣款。 *Ps：我使用的是招行全球通的信用卡，其他的全球通信用卡应该也可以。  5.我们完成付款之后登陆到Google Cloud的控制台 ，就能看到我们账号的赠金300刀以及有效期365天：   谷歌云创建VM实例  1.创建VM实例，我们点击左上角的导航菜单选项，选择Compute Engine（计算机引擎），在子菜单选择VM实例：  2.我们进入VM实例创建页面，直接点击创建实例选项：  3.我们接下来进行VM实例创建的配置选项如图所示，VM实例名称自定义，VM实例地区选择靠近亚洲地区asia开头的地区，机器类型选择微型即可（省钱），磁盘的系统我使用的centos7，当然我们可以自由选择：  最后记得勾选上允许HTTP流量和允许HTTPS流量，最后设置完成后我们点击创建：  创建成功后，会出现一个实例列表：  6.我们接下来可以对我们创建的VM实例的连接速度进行一下测试，如果连接速度不错的话我们可以继续下面的操作，如果连接速度很差的话我们可以选择重建VM实例。一般PING值在100以内速度都还不错，我们可以访问IPIP对我们创建的VM实例进行测试，这里前面选择一个距离你比较近的地点，后面输入我们创建的VM实例的外部IP地址，，然后我们点击查看： IPIP测试地址： https://www.ipip.net/traceroute.php   搭建SSR&#43;BBR  1.VM实例创建好之后我们接下来进行SSR和BBR的安装。我们在创建好的VM实例名称末尾的连接选项中选择在浏览器窗口中打开，之后正式进入搭建的配置界面：  2.我们接下来会进入服务器后台配置界面，这里就需要我们输入相关代码进行操作了。代码输入请严格按照给到的代码复制粘贴获取root权限：
+*sudo -i*  3.我们获取到root权限之后，可以使用别人的脚本一键安装BBR加速：
+*wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod &#43;x bbr.sh &amp;&amp; ./bbr.sh *  或者，我们可以深入一层，一步步的安装BBR，以便多了解一些Linux的操作指令：
+ 步骤 ① ：使用 ELRepo RPM 仓库升级内核 要使用BBR，我们需要将CentOS 7机器的内核升级到4.9.0。我们可以使用ELRepo RPM第三方仓库轻松完成该操作。 ps：ELRepo是CentOS十分有用的稳定的软件源，与其他软件源不一样的是，这个第三方源主要是提供硬件驱动、内核更新方面的支持，如显卡、无线网卡、内核等等，现在已经支持CentOS7." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sunquan123.github.io/post/1/" />
+<meta property="article:published_time" content="2019-05-13T15:04:23&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-13T15:04:23&#43;08:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://sunquan123.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">谷歌云免费搭建VPS</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 13, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="谷歌云账户免费申请试用">谷歌云账户免费申请试用</h2>
+
+<ul>
+<li><p>1.登录Google Cloud官网并进行账户注册： <a href="https://cloud.google.com/">https://cloud.google.com/</a> ,我们在官网首页点击免费试用进行注册：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/20180907114315.png" alt="" /></p></li>
+
+<li><p>2.我们进行国家和地区资料与个人信息填写，我们在右侧栏可以看到12个月有效期的300刀赠额说明。国家地区选择，最好直接用美国信息填写，不要选中国，很多人都说选择中国无法申请成功。个人信息就是用下面的网站生成的信息填入对应的栏目就行了。
+*美国人信息生成网站：<a href="http://www.haoweichi.com/Index/custom_result">匹配结果-世界各国虚拟身份信息、地址、信用卡生成</a>
+*勾选同意条款，点击同意并继续：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/20180907114412.png" alt="" /></p></li>
+
+<li><p>3.我们接下来进行个人资料和信用卡资料的填写，个人资料和信用卡资料如实填写就好了：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/20180907114509.png" alt="" /></p></li>
+
+<li><p>账号类型尽量选择个人，个人资料和信用卡信息填写完成之后直接点击开始免费试用选项即可。接着你的信用卡账户消费1美金，这是谷歌为了确认你不是机器人用于验证账户的，5分钟内你会收到账户撤销1美金的消费操作，1美元会返回你的账户，整个过程完全免费。另外除非你主动确认升级成付费账号，300美金的赠款消费完毕以后并不会直接从你的信用卡账户续费扣款。
+*Ps：我使用的是招行全球通的信用卡，其他的全球通信用卡应该也可以。
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/20180907114857.png" alt="" /></p></li>
+
+<li><p>5.我们完成付款之后登陆到Google Cloud的控制台 ，就能看到我们账号的赠金300刀以及有效期365天：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.13.53.png" alt="" /></p></li>
+</ul>
+
+<hr />
+
+<h2 id="谷歌云创建vm实例">谷歌云创建VM实例</h2>
+
+<ul>
+<li><p>1.创建VM实例，我们点击左上角的导航菜单选项，选择Compute Engine（计算机引擎），在子菜单选择VM实例：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.16.38.png" alt="" /></p></li>
+
+<li><p>2.我们进入VM实例创建页面，直接点击创建实例选项：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.19.27.png" alt="" /></p></li>
+
+<li><p>3.我们接下来进行VM实例创建的配置选项如图所示，VM实例名称自定义，VM实例地区选择靠近亚洲地区asia开头的地区，机器类型选择微型即可（省钱），磁盘的系统我使用的centos7，当然我们可以自由选择：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.21.21.png" alt="" /></p></li>
+
+<li><p>最后记得勾选上允许HTTP流量和允许HTTPS流量，最后设置完成后我们点击创建：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.25.22.png" alt="" /></p></li>
+
+<li><p>创建成功后，会出现一个实例列表：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.27.41.png" alt="" /></p></li>
+
+<li><p>6.我们接下来可以对我们创建的VM实例的连接速度进行一下测试，如果连接速度不错的话我们可以继续下面的操作，如果连接速度很差的话我们可以选择重建VM实例。一般PING值在100以内速度都还不错，我们可以访问IPIP对我们创建的VM实例进行测试，这里前面选择一个距离你比较近的地点，后面输入我们创建的VM实例的外部IP地址，，然后我们点击查看：
+IPIP测试地址： <a href="https://www.ipip.net/traceroute.php">https://www.ipip.net/traceroute.php</a>
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.30.16.png" alt="" /></p></li>
+</ul>
+
+<hr />
+
+<h2 id="搭建ssr-bbr">搭建SSR+BBR</h2>
+
+<ul>
+<li><p>1.VM实例创建好之后我们接下来进行SSR和BBR的安装。我们在创建好的VM实例名称末尾的连接选项中选择在浏览器窗口中打开，之后正式进入搭建的配置界面：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2009.33.55.png" alt="" /></p></li>
+
+<li><p>2.我们接下来会进入服务器后台配置界面，这里就需要我们输入相关代码进行操作了。代码输入请严格按照给到的代码复制粘贴获取root权限：</p>
+
+<pre><code>*sudo -i*
+</code></pre></li>
+
+<li><p>3.我们获取到root权限之后，可以使用别人的脚本一键安装BBR加速：</p>
+
+<pre><code>*wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh
+*
+</code></pre>
+
+<p>或者，我们可以深入一层，一步步的安装BBR，以便多了解一些Linux的操作指令：</p></li>
+
+<li><p><strong>步骤 ① ：使用 <a href="https://www.elrepo.org/">ELRepo RPM</a> 仓库升级内核</strong>
+要使用BBR，我们需要将CentOS 7机器的内核升级到4.9.0。我们可以使用ELRepo RPM第三方仓库轻松完成该操作。
+ps：ELRepo是CentOS十分有用的稳定的软件源，与其他软件源不一样的是，这个第三方源主要是提供硬件驱动、内核更新方面的支持，如显卡、无线网卡、内核等等，现在已经支持CentOS7.x+,更新较快。</p></li>
+</ul>
+
+<p><strong>查看当前内核</strong>：</p>
+
+<pre><code>uname -r
+</code></pre>
+
+<p>此命令应可能输出类似于以下字符串：</p>
+
+<pre><code>3.10.0-514.2.2.el7.x86_64
+</code></pre>
+
+<p>当前内核为3.10.0，因此我们需要更新内核。</p>
+
+<p><strong>安装 ELRepo 仓库</strong>：</p>
+
+<pre><code>sudo rpm —import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+</code></pre>
+
+<p>注意：
+第一行命令是导入public key；
+第二行针对我使用的CentOS7，需要使用elrepo-release-7.0-2这个版本进行安装。
+返回：</p>
+
+<pre><code>Retrieving http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
+Preparing...                ########################################### [100%]
+   1:elrepo-release         ########################################### [100%]
+</code></pre>
+
+<p><strong>安装内核</strong>
+在yum的ELRepo源中，有mainline颁布的，可以这样安装：</p>
+
+<pre><code>sudo yum —enablerepo=elrepo-kernel install  kernel-ml-devel kernel-ml -y
+</code></pre>
+
+<p>当然也可以安装long term的：</p>
+
+<pre><code>sudo yum —enablerepo=elrepo-kernel  install  kernel-lt -y
+</code></pre>
+
+<p>国外网速较慢，耐心等待&hellip;.返回：</p>
+
+<pre><code>........
+ * base: mirror.bit.edu.cn
+ * elrepo: repos.lax-noc.com
+ * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+ * extras: mirrors.sina.cn
+ * updates: mirror.bit.edu.cn
+base                                                                         | 3.7 kB     00:00     
+elrepo                                                                       | 2.9 kB     00:00     
+elrepo/primary_db                                                            | 716 kB     00:45     
+https://mirrors.tuna.tsinghua.edu.cn/elrepo/kernel/el6/x86_64/repodata/repomd.xml: [Errno 14] PYCURL ERROR 6 - &quot;Couldn't resolve host 'mirrors.tuna.tsinghua.edu.cn'&quot;
+Trying other mirror.
+elrepo-kernel                                                                | 2.9 kB     00:00     
+elrepo-kernel/primary_db                                                     |  19 kB     00:00     
+extras                                                                       | 3.4 kB     00:00     
+extras/primary_db                                                            |  37 kB     00:00     
+updates                                                                      | 3.4 kB     00:00     
+updates/primary_db                                                           | 2.0 MB     00:01     
+Setting up Install Process
+Resolving Dependencies
+--&gt; Running transaction check
+.....
+Total download size: 33 M
+Installed size: 154 M
+Downloading Packages:
+http://repos.lax-noc.com/elrepo/kernel/el6/x86_64/RPMS/kernel-lt-3.10.103-1.el6.elrepo.x86_64.rpm: [Errno 12] Timeout on http://repos.lax-noc.com/elrepo/kernel/el6/x86_64/RPMS/kernel-lt-3.10.103-1.el6.elrepo.x86_64.rpm: (28, 'Operation too slow. Less than 1 bytes/sec transfered the last 30 seconds')
+Trying other mirror.
+kernel-lt-3.10.103-1.el6.elrepo.x86_64.rpm                                                                                            |  33 MB     68:27     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+Warning: RPMDB altered outside of yum.
+  Installing : kernel-lt-3.10.103-1.el6.elrepo.x86_64                                                                                                    1/1 
+  Verifying  : kernel-lt-3.10.103-1.el6.elrepo.x86_64                                                                                                    1/1 
+
+Installed:
+  kernel-lt.x86_64 0:3.10.103-1.el6.elrepo                                                                                                                   
+
+Complete!
+You have new mail in /var/spool/mail/root
+</code></pre>
+
+<p><strong>确认安装结果：</strong></p>
+
+<pre><code>rpm -qa | grep kernel
+</code></pre>
+
+<p>如果安装成功，我们应该看到类似于下面的信息，且
+kernel-ml-4.18.5-1.el7.elrepo.x86_64在输出列表中看到：</p>
+
+<pre><code>kernel-ml-4.18.5-1.el7.elrepo.x86_64
+kernel-3.10.0-514.el7.x86_64
+kernel-tools-libs-3.10.0-514.2.2.el7.x86_64
+kernel-tools-3.10.0-514.2.2.el7.x86_64
+kernel-3.10.0-514.2.2.el7.x86_64
+</code></pre>
+
+<p><strong>显示 grub2 菜单中的所有条目：</strong></p>
+
+<pre><code>sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \’
+</code></pre>
+
+<p>结果应该类似于：</p>
+
+<pre><code>CentOS Linux 7 Rescue a0cbf86a6ef1416a8812657bb4f2b860 (4.18.5-1.el7.elrepo.x86_64)
+CentOS Linux (4.18.5-1.el7.elrepo.x86_64) 7 (Core)
+CentOS Linux (3.10.0-514.2.2.el7.x86_64) 7 (Core)
+CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)
+CentOS Linux (0-rescue-bf94f46c6bd04792a6a42c91bae645f7) 7 (Core)
+</code></pre>
+
+<p><strong>由于行计数开始于0，且4.18.5内核条目位于第一行，因此将默认引导条目应设置为0：</strong></p>
+
+<pre><code>sudo grub2-set-default 0
+</code></pre>
+
+<p><strong>重启系统：</strong></p>
+
+<pre><code>sudo shutdown -r now 
+// 或 reboot
+</code></pre>
+
+<p>当服务器重新联机时，我们重新运行uname命令以确认使用的是正确的内核：</p>
+
+<pre><code>uname -r
+</code></pre>
+
+<p>我们应该看到如下结果：</p>
+
+<pre><code>4.18.5-1.el7.elrepo.x86_64
+</code></pre>
+
+<ul>
+<li><p><strong>步骤 ②：启用BBR</strong>
+要启用 BBR 算法，我们需要<strong>修改sysctl 配置</strong>，如下所示：</p>
+
+<pre><code>echo ‘net.core.default_qdisc=fq’ | sudo tee -a /etc/sysctl.conf
+echo ‘net.ipv4.tcp_congestion_control=bbr’ | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+</code></pre></li>
+</ul>
+
+<p>现在，我们可以使用以下命令，<strong>确认是否已经启用了BBR</strong>：</p>
+
+<pre><code>sudo sysctl net.ipv4.tcp_available_congestion_control
+</code></pre>
+
+<p>正常情况下应输出类似以下的字符串：</p>
+
+<pre><code>net.ipv4.tcp_available_congestion_control = bbr cubic reno
+</code></pre>
+
+<p>接下来，继续验证：</p>
+
+<pre><code>sudo sysctl -n net.ipv4.tcp_congestion_control
+</code></pre>
+
+<p>应该输出类似以下字符串：</p>
+
+<pre><code>bbr
+</code></pre>
+
+<p>最后，检查内核模块是否已加载：</p>
+
+<pre><code>lsmod | grep bbr
+</code></pre>
+
+<p>应该输出类似于：</p>
+
+<pre><code>tcp_bbr     20841  0
+</code></pre>
+
+<p>升级内核之后，往往老旧的内核也保留下来了，执行以下命令，将自动筛选并<strong>删除当前无用的系统内核版本</strong>：</p>
+
+<pre><code>yum remove $(rpm -qa | grep kernel | grep -v $(uname -r))
+</code></pre>
+
+<p>至此，BBR已经被安装到我们的服务器上了。</p>
+
+<ul>
+<li><p>4.我们先安装wget工具。
+ps：CentOS wget是一个从网络上自动下载文件的自由工具。它支持HTTP，HTTPS和FTP协议，可以使用HTTP代理。所谓的自动下载是指，CentOS wget可以在用户退出系统的之后在后台执行。这意味这你可以登录系统，启动一个CentOS wget下载任务，然后退出系统，CentOS wget将在后台执行直到任务完成，相对于其它大部分浏览器在下载大量数据时需要用户一直的参与，这省去了极大的麻烦。</p>
+
+<pre><code>yum install wget
+</code></pre></li>
+
+<li><p>5.其后，我们使用wget下载别人的SSR安装脚本进行一键安装：</p>
+
+<pre><code>*wget –no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh &amp;&amp; chmod +x shadowsocksR.sh*
+</code></pre></li>
+</ul>
+
+<p>6.下载完成后，启动脚本：</p>
+
+<pre><code>*./shadowsocksR.sh*
+</code></pre>
+
+<p>接下来我们要设置SSR的密码、端口号、加密方式、协议、混淆方式这几个选项，SSR的密码与端口我们可以进行自定义，其余默认一路回车键即可。</p>
+
+<ul>
+<li><p>7.SSR的配置完成之后我们一路回车等待一段时间直到得到如图所示的画面，这样我们就在谷歌云上将SSR+BBR搭建完成了，我们将以下信息复制并保存下来，我们在使用SSR客户端的时候将会用到这些信息：</p>
+
+<pre><code>Congratulations, ShadowsocksR server install completed!
+Your Server IP        :  xx.xxx.xxx.xxx 
+Your Server Port      :  8989 
+Your Password         :  xxxxxxxxxx 
+Your Protocol         :  origin 
+Your obfs             :  plain 
+Your Encryption Method:  aes-256-cfb 
+
+</code></pre></li>
+</ul>
+
+<hr />
+
+<h2 id="设置网络">设置网络</h2>
+
+<ul>
+<li><p>1.我们需要设定一下外网IP地址为静态，保证IP地址的稳定性。我们选择VM实例里面右方的提示：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2010.55.08.png" alt="" /></p></li>
+
+<li><p>2.进入操作文档后，点击转到保留静态地址界面：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2010.56.56.png" alt="" /></p></li>
+
+<li><p>3.我们进入到外网IP地址页面，我们找到我们创建好的IP地址，IP地址类型分为了临时和静态两种，我们将IP地址修改为静态，这时我们会有一个弹窗信息需要我们输入，我们起一个名字点击保留即可。注意在同一个主机地址下只能保留一个静态IP地址，否则将会收到Quota ‘STATIC_ADDRESSES’ exceeded. Limit: 1.0 in region asia-east1提示。修改好后的界面：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2011.00.54.png" alt="" /></p></li>
+
+<li><p>4.我们接下来设置防火墙规则，我们在侧边栏VPC网络中找到防火墙规则：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2011.02.07.png" alt="" /></p></li>
+
+<li><p>5.我们需要将http-server和https-server分别进行协议/端口号的设置：
+<img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2011.04.06.png" alt="" /></p></li>
+
+<li><p>6.我们直接点击http-server和https-server的名称进入到详细页面并点击修改按钮进行端口的设置，这里的端口号就是我们刚才安装完SSR和BBR之后获得的SSR的端口号，这里在输入的时候采用英文输入模式下进行输入，否则会出现报错。输入完成之后记得点击保存按钮。</p></li>
+</ul>
+
+<p><img src="%E8%B0%B7%E6%AD%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BAVPS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-06-25%2011.04.55.png" alt="" /></p>
+
+<ul>
+<li>7.我们将以上的工作完成之后就可以下载SSR的客户端进行相关配置了，SSR的下载地址我们访问SSR的官网地址根据个人的设备下载不同的客户端即可。</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
