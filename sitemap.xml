@@ -3,12 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://sunquan123.github.io/categories/</loc>
+    <loc>https://sunquan123.github.io/</loc>
+    <lastmod>2019-05-13T15:04:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://sunquan123.github.io/</loc>
+    <loc>https://sunquan123.github.io/post/</loc>
+    <lastmod>2019-05-13T15:04:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunquan123.github.io/post/1/</loc>
+    <lastmod>2019-05-13T15:04:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sunquan123.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
